@@ -1,0 +1,15 @@
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\bin\Debug\Presentacion.exe.config
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\bin\Debug\Presentacion.exe
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\bin\Debug\Presentacion.pdb
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\bin\Debug\Dominio.dll
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\bin\Debug\Dominio.pdb
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\obj\Debug\Presentacion.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\obj\Debug\Presentacion.Frm_Catalogo.resources
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\obj\Debug\Presentacion.Properties.Resources.resources
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\obj\Debug\Presentacion.csproj.GenerateResource.cache
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\obj\Debug\Presentacion.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\obj\Debug\Presentacion.csproj.CopyComplete
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\obj\Debug\Presentacion.exe
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\obj\Debug\Presentacion.pdb
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\bin\Debug\Repositorio.dll
+C:\Users\Usuario\Desktop\C#\Trabajo final\TPFinalNivel2_Herrera\Presentacion\bin\Debug\Repositorio.pdb
