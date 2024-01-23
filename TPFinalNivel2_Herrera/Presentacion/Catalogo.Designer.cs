@@ -32,6 +32,7 @@
             this.pbArticulos = new System.Windows.Forms.PictureBox();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.lblfiltro = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticulos)).BeginInit();
             this.SuspendLayout();
@@ -71,11 +72,22 @@
             this.lblfiltro.TabIndex = 3;
             this.lblfiltro.Text = "Filtro:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(21, 449);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(233, 70);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "&Agregar Articulo";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Frm_Catalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1137, 552);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblfiltro);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.pbArticulos);
@@ -99,6 +111,7 @@
         private System.Windows.Forms.PictureBox pbArticulos;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.Label lblfiltro;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -44,6 +44,8 @@
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.pbImagenart = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btbAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,11 +189,33 @@
             this.label8.TabIndex = 17;
             this.label8.Text = "Alta de articulo";
             // 
+            // btbAceptar
+            // 
+            this.btbAceptar.Location = new System.Drawing.Point(169, 431);
+            this.btbAceptar.Name = "btbAceptar";
+            this.btbAceptar.Size = new System.Drawing.Size(182, 51);
+            this.btbAceptar.TabIndex = 18;
+            this.btbAceptar.Text = "&Aceptar";
+            this.btbAceptar.UseVisualStyleBackColor = true;
+            this.btbAceptar.Click += new System.EventHandler(this.btbAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(432, 431);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(182, 51);
+            this.btnCancelar.TabIndex = 19;
+            this.btnCancelar.Text = "&Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // Frm_AltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 397);
+            this.ClientSize = new System.Drawing.Size(793, 494);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btbAceptar);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pbImagenart);
             this.Controls.Add(this.cbCategoria);
@@ -210,6 +234,7 @@
             this.Controls.Add(this.txtCodigo);
             this.Name = "Frm_AltaArticulo";
             this.Text = "Alta de articulo";
+            this.Load += new System.EventHandler(this.Frm_AltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -234,5 +259,7 @@
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.PictureBox pbImagenart;
         public System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btbAceptar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

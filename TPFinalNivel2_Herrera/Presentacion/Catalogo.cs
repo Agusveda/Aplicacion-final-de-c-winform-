@@ -62,13 +62,13 @@ namespace Presentacion
         {
             try
             {
-                pbArticulos.Load(imagen); //seleccionado es el pokemon que vaya en el datagrid
+                pbArticulos.Load(imagen); 
 
             }
             catch (Exception)
             {
 
-                pbArticulos.Load("https://img.freepik.com/vector-gratis/ilustracion-icono-galeria_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1687694167.1703289600&semt=ais");
+                pbArticulos.Load("https://previews.123rf.com/images/yoginta/yoginta2301/yoginta230100567/196853824-imagen-no-encontrada-ilustraci%C3%B3n-vectorial.jpg");
             }
 
         }
@@ -93,6 +93,13 @@ namespace Presentacion
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltada;
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Frm_AltaArticulo alta = new Frm_AltaArticulo();
+            alta.ShowDialog();
+            CargarListado();
         }
     }
     
