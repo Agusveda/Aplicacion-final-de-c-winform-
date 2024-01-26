@@ -46,6 +46,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btbAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnImagenLocal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,7 +112,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(72, 230);
+            this.label4.Location = new System.Drawing.Point(71, 274);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 9;
@@ -121,7 +122,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(50, 275);
+            this.label5.Location = new System.Drawing.Point(50, 233);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 10;
@@ -157,7 +158,7 @@
             // cbMarca
             // 
             this.cbMarca.FormattingEnabled = true;
-            this.cbMarca.Location = new System.Drawing.Point(124, 230);
+            this.cbMarca.Location = new System.Drawing.Point(123, 274);
             this.cbMarca.Name = "cbMarca";
             this.cbMarca.Size = new System.Drawing.Size(167, 21);
             this.cbMarca.TabIndex = 14;
@@ -165,14 +166,14 @@
             // cbCategoria
             // 
             this.cbCategoria.FormattingEnabled = true;
-            this.cbCategoria.Location = new System.Drawing.Point(124, 272);
+            this.cbCategoria.Location = new System.Drawing.Point(124, 230);
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(167, 21);
             this.cbCategoria.TabIndex = 15;
             // 
             // pbImagenart
             // 
-            this.pbImagenart.Location = new System.Drawing.Point(332, 107);
+            this.pbImagenart.Location = new System.Drawing.Point(369, 107);
             this.pbImagenart.Name = "pbImagenart";
             this.pbImagenart.Size = new System.Drawing.Size(412, 269);
             this.pbImagenart.TabIndex = 16;
@@ -209,11 +210,22 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnImagenLocal
+            // 
+            this.btnImagenLocal.Location = new System.Drawing.Point(297, 313);
+            this.btnImagenLocal.Name = "btnImagenLocal";
+            this.btnImagenLocal.Size = new System.Drawing.Size(25, 20);
+            this.btnImagenLocal.TabIndex = 20;
+            this.btnImagenLocal.Text = "...";
+            this.btnImagenLocal.UseVisualStyleBackColor = true;
+            this.btnImagenLocal.Click += new System.EventHandler(this.btnImagenLocal_Click);
+            // 
             // Frm_AltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(793, 494);
+            this.Controls.Add(this.btnImagenLocal);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btbAceptar);
             this.Controls.Add(this.label8);
@@ -261,5 +273,6 @@
         public System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btbAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnImagenLocal;
     }
 }

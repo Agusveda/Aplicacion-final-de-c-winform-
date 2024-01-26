@@ -101,6 +101,19 @@ namespace Presentacion
             alta.ShowDialog();
             CargarListado();
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Clase_Articulo ArtSeleccionado;
+            ArtSeleccionado = (Clase_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            Frm_AltaArticulo Modificar = new Frm_AltaArticulo(ArtSeleccionado); // le envio el articulo seleccionado para que tome sus 
+
+            Modificar.ShowDialog(); // muestro form
+            CargarListado(); // cargo el listado de nuevo una vez modificado.
+
+
+        }
     }
     
 }

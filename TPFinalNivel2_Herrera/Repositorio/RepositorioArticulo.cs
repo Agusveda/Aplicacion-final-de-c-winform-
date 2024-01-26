@@ -76,20 +76,20 @@ namespace Repositorio
 
         }
 
-        public void Agregar(Clase_Articulo articulo)
+        public void Agregar(Clase_Articulo nuevoart)
         {
                 AccesoDatos datos = new AccesoDatos();
             try
             {
 
-                datos.setearConsulta("Insert into ARTICULOS(Codigo,Nombre,Descripcion,IdMarca,IdCategoria,ImagenUrl,Precio) set (@Codigo,@Nombre,@Descripcion,@IdMarca,@IdCategoria,@ImagenUrl,@Precio)");
-                datos.setearParametros("@Codigo", articulo.Codigo);
-                datos.setearParametros("@Nombre", articulo.Nombre);
-                datos.setearParametros("@Descripcion", articulo.Descripcion);
-                datos.setearParametros("@IdMarca", articulo.Marca.Id);
-                datos.setearParametros("@IdCategoria", articulo.Categoria.Id);
-                datos.setearParametros("@ImagenUrl", articulo.ImagenUrl);
-                datos.setearParametros("@Precio", articulo.Precio);
+                datos.setearConsulta("Insert into ARTICULOS(Codigo,Nombre,Descripcion,IdMarca,IdCategoria,ImagenUrl,Precio) values (@Codigo,@Nombre,@Descripcion,@IdMarca,@IdCategoria,@ImagenUrl,@Precio)");
+                datos.setearParametros("@Codigo", nuevoart.Codigo);
+                datos.setearParametros("@Nombre", nuevoart.Nombre);
+                datos.setearParametros("@Descripcion", nuevoart.Descripcion);
+                datos.setearParametros("@IdMarca", nuevoart.Marca.Id);
+                datos.setearParametros("@IdCategoria", nuevoart.Categoria.Id);
+                datos.setearParametros("@ImagenUrl", nuevoart.ImagenUrl);
+                datos.setearParametros("@Precio", nuevoart.Precio);
                 datos.ejecutarAccion();
             }
             catch (Exception)
@@ -107,5 +107,38 @@ namespace Repositorio
         }
 
 
+        public void Modificar(Clase_Articulo articulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion , IdMarca=@IdMarca, IdCategoria = @IdCategoria, ImagenUrl = @ImagenUrl, Precio = @Precio where id = @id");
+                datos.setearParametros("@Codigo", articulo.Codigo);
+                datos.setearParametros("@Nombre", articulo.Nombre);
+                datos.setearParametros("@Descripcion", articulo.Descripcion);
+                datos.setearParametros("@IdMarca", articulo.Marca.Id);
+                datos.setearParametros("@IdCategoria", articulo.Categoria.Id);
+                datos.setearParametros("@ImagenUrl", articulo.ImagenUrl);
+                datos.setearParametros("@Precio", articulo.Precio);
+                datos.setearParametros("@id", articulo.Id);
+
+                datos.ejecutarAccion();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+
+                datos.cerrarConexion();
+            }
+
+        }
     }
 }

@@ -5,16 +5,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Presentacion
 {
     public partial class Frm_AltaArticulo : Form
     {
         private Clase_Articulo Articulo = null;
+        private OpenFileDialog archivo = null;
+
+
         public Frm_AltaArticulo()
         {
             InitializeComponent();
@@ -66,20 +71,7 @@ namespace Presentacion
 
 
 
-        private void cargarImagen(string imagen)
-        {
-            try
-            {
-                pbImagenart.Load(imagen); //seleccionado es el pokemon que vaya en el datagrid
-
-            }
-            catch (Exception ex)
-            {
-
-                pbImagenart.Load("https://previews.123rf.com/images/yoginta/yoginta2301/yoginta230100567/196853824-imagen-no-encontrada-ilustraci%C3%B3n-vectorial.jpg");
-            }
-
-        }
+        
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -93,10 +85,10 @@ namespace Presentacion
 
             try
             {
-                if(articulo == null)
-                {
-
+                if(articulo == null) { }// si el articulo es null se crea una nueva instancia
                     articulo = new Clase_Articulo();
+                
+
 
 
                     articulo.Codigo = txtCodigo.Text;
@@ -105,22 +97,63 @@ namespace Presentacion
                     articulo.ImagenUrl = txtImagenUrl.Text;
                     articulo.Categoria = (IdCategoria)cbCategoria.SelectedItem;
                     articulo.Marca= (IdMarca)cbMarca.SelectedItem;
-
-
-
-
+                
+                if (articulo.Id != 0) // si id es distinto de 0 es porque ya existe y es modificacion..
+                {
+                    repositorioArticulo.Modificar(articulo);
+                    MessageBox.Show("modificado exitosamente");
 
                 }
 
+                else // sino se agrega el nuevo articulo
+                {
 
+                    repositorioArticulo.Agregar(articulo);
+                    MessageBox.Show("agregado exitosamente");
+                }
+                // guardo imagen si la levanto localmente
+                if (archivo != null && !(txtImagenUrl.Text.ToUpper().Contains("HTTP")))
+                {
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
 
+                }
+                    Close(); // cierro ventana
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
+        }
 
+        private void btnImagenLocal_Click(object sender, EventArgs e)
+        {
+                OpenFileDialog archivo = new OpenFileDialog(); // puede abrir archivos en la pc local
+
+                archivo.Filter = "png|*.png;|jpg|*.jpg"; //dpende los archivos que se quieran admitir se escriben en esta linea
+                if (archivo.ShowDialog() == DialogResult.OK)
+                {
+                    txtImagenUrl.Text = archivo.FileName;
+                    cargarImagen(archivo.FileName); // funcion para poder cargar la imagen
+
+
+                    
+
+                }
+            
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbImagenart.Load(imagen); //seleccionado es el pokemon que vaya en el datagrid
+
+            }
+            catch (Exception ex)
+            {
+
+                pbImagenart.Load("https://previews.123rf.com/images/yoginta/yoginta2301/yoginta230100567/196853824-imagen-no-encontrada-ilustraci%C3%B3n-vectorial.jpg");
+            }
 
         }
     }
