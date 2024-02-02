@@ -20,7 +20,7 @@ namespace Repositorio
             try
             {
                 // consulta para seleccionar todos los articulos con sus marcas/categorias
-                datos.setearConsulta("select ar.Id,Codigo,Nombre, ar.Descripcion as Descripcion, ca.id as idcategoria, ca.Descripcion as categoria , ma.id as idmarca, ma.Descripcion as Marca,ImagenUrl,Precio from ARTICULOS ar inner join CATEGORIAS ca on ca.Id = ar.IdCategoria inner join MARCAS ma on ma.Id = ar.IdMarca");
+                datos.setearConsulta("select ar.Id as id ,Codigo,Nombre, ar.Descripcion as Descripcion, ca.id as idcategoria, ca.Descripcion as categoria , ma.id as idmarca, ma.Descripcion as Marca,ImagenUrl,Precio from ARTICULOS ar inner join CATEGORIAS ca on ca.Id = ar.IdCategoria inner join MARCAS ma on ma.Id = ar.IdMarca");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -89,13 +89,13 @@ namespace Repositorio
                 datos.setearParametros("@IdMarca", nuevoart.Marca.Id);
                 datos.setearParametros("@IdCategoria", nuevoart.Categoria.Id);
                 datos.setearParametros("@ImagenUrl", nuevoart.ImagenUrl);
-                datos.setearParametros("@Precio", nuevoart.Precio);
+                datos.setearParametros("@Precio", nuevoart.Precio );
                 datos.ejecutarAccion();
             }
-            catch (Exception)
+            catch (Exception ex )
             {
 
-                throw;
+                throw ex;
             }
             finally
             {

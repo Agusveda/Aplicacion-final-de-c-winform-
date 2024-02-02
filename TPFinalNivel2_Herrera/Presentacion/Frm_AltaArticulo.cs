@@ -80,27 +80,29 @@ namespace Presentacion
 
         private void btbAceptar_Click(object sender, EventArgs e)
         {
-            Clase_Articulo articulo = new Clase_Articulo();
+            Clase_Articulo arti = new Clase_Articulo();
             RepositorioArticulo repositorioArticulo = new RepositorioArticulo();
 
             try
             {
-                if(articulo == null) { }// si el articulo es null se crea una nueva instancia
-                    articulo = new Clase_Articulo();
-                
+                if(Articulo == null) // si el articulo es null se crea una nueva instancia
+                    Articulo = new Clase_Articulo();
 
 
 
-                    articulo.Codigo = txtCodigo.Text;
-                    articulo.Nombre = txtNombre.Text;
-                    articulo.Descripcion = txtDescripcion.Text;
-                    articulo.ImagenUrl = txtImagenUrl.Text;
-                    articulo.Categoria = (IdCategoria)cbCategoria.SelectedItem;
-                    articulo.Marca= (IdMarca)cbMarca.SelectedItem;
-                
-                if (articulo.Id != 0) // si id es distinto de 0 es porque ya existe y es modificacion..
+
+                Articulo.Codigo = txtCodigo.Text;
+                Articulo.Nombre = txtNombre.Text;
+                    Articulo.Descripcion = txtDescripcion.Text;
+                    Articulo.ImagenUrl = txtImagenUrl.Text;
+                    Articulo.Categoria = (IdCategoria)cbCategoria.SelectedItem;
+                    Articulo.Marca= (IdMarca)cbMarca.SelectedItem;
+                    Articulo.Precio=decimal.Parse(txtPrecio.Text);
+                    
+
+                if (Articulo.Id != 0) // si id es distinto de 0 es porque ya existe y es modificacion..
                 {
-                    repositorioArticulo.Modificar(articulo);
+                    repositorioArticulo.Modificar(Articulo);
                     MessageBox.Show("modificado exitosamente");
 
                 }
@@ -108,7 +110,7 @@ namespace Presentacion
                 else // sino se agrega el nuevo articulo
                 {
 
-                    repositorioArticulo.Agregar(articulo);
+                    repositorioArticulo.Agregar(Articulo);
                     MessageBox.Show("agregado exitosamente");
                 }
                 // guardo imagen si la levanto localmente
