@@ -23,14 +23,14 @@ namespace Presentacion
         public Frm_AltaArticulo()
         {
             InitializeComponent();
-        }
+        } // Cuando se haga un ingreso 
 
         public Frm_AltaArticulo(Clase_Articulo Articulo)
         {
             InitializeComponent();
             this.Articulo = Articulo;
             Text = " Modificar articulo";
-        }
+        } // Cuando se haga una modificacion se cambia el nombre de la ventana y se setea al articulo para no crear uno nuevo
 
         private void Frm_AltaArticulo_Load(object sender, EventArgs e)
         {
@@ -68,11 +68,7 @@ namespace Presentacion
 
 
         }
-
-
-
-        
-
+         
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();

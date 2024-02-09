@@ -19,10 +19,16 @@ namespace Presentacion
         {
             InitializeComponent();
         }
-
+        public Frm_Catalogo(Clase_Articulo articulo)
+        {
+            InitializeComponent();
+        }
         private void Frm_Catalogo_Load(object sender, EventArgs e)
         {
             CargarListado();
+            cbcampo.Items.Add("Precio.");
+            cbcampo.Items.Add("Nombre.");
+
 
         }
 
@@ -40,12 +46,13 @@ namespace Presentacion
 
 
             }
+            
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.ToString());
             }
-
+            ocultarColumnas();
 
         }
 
@@ -81,7 +88,7 @@ namespace Presentacion
             if (filtro != "")
             {
 
-                listaFiltada = ListaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()) ||  x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+                listaFiltada = ListaArticulos.FindAll(x => x.Categoria.Descripcion.ToUpper().Contains(filtro.ToUpper()) || x.Marca.Descripcion.ToUpper().Contains(filtro.ToUpper()));
 
             }
             else
@@ -92,10 +99,10 @@ namespace Presentacion
 
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltada;
-
+            ocultarColumnas();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
             Frm_AltaArticulo alta = new Frm_AltaArticulo();
             alta.ShowDialog();
@@ -114,6 +121,159 @@ namespace Presentacion
 
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            RepositorioArticulo repoarti = new RepositorioArticulo();
+            Clase_Articulo seleccionado;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Estas seguro en eliminar el registro?", "Eliminando...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+
+                    seleccionado = (Clase_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+                    repoarti.Eliminar(seleccionado.Id);
+                CargarListado();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnfiltro_Click(object sender, EventArgs e)
+        {
+            RepositorioArticulo repoarti = new RepositorioArticulo();
+            try
+            {
+
+                if (validacionFiltros())
+                    return;
+                string campo = cbcampo.SelectedItem.ToString();
+                string criterio = cbcriterio.SelectedItem.ToString();
+                string filtro = txtfiltroavanz.Text;
+                dgvArticulos.DataSource = repoarti.FiltrarArticulos(campo, criterio, filtro);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        private bool validacionFiltros()
+        {
+            if (cbcampo.SelectedIndex == -1)
+            {
+
+                MessageBox.Show("Por favor, seleccione el campo para fitlrar... ");
+                return true;
+            }
+            if (cbcriterio.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione el criterio para fitlrar... ");
+                return true;
+            }
+            if (cbcampo.SelectedItem.ToString() == "Precio.")
+            {
+                if (!(soloNumeros(txtfiltroavanz.Text)))
+                {
+
+                    MessageBox.Show("Solo numeros para filtrar en un campo numerico");
+                    return true;
+                }
+
+            }
+
+            return false;
+
+        }
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char character in cadena)
+            {
+                if (!(char.IsNumber(character)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void txtfiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Clase_Articulo> listaFiltada;
+            string filtro = txtfiltroavanz.Text;
+
+            if (filtro != "")
+            {
+
+                listaFiltada = ListaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Precio.ToString().Contains(filtro));
+
+            }
+            else
+            {
+                listaFiltada = ListaArticulos;
+            }
+
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltada;
+            ocultarColumnas();
+
+        }
+
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["ImagenUrl"].Visible = false;
+            dgvArticulos.Columns["id"].Visible = false;
+        }
+
+        private void cbcampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cbcampo.SelectedItem.ToString();
+
+            if (opcion == "Precio.")
+            {
+                cbcriterio.Items.Add("Mayor a..");
+                cbcriterio.Items.Add("Menor a..");
+                cbcriterio.Items.Add("Igual a..");
+
+
+            }
+            else
+            {
+                cbcriterio.Items.Add("comienza con..");
+                cbcriterio.Items.Add("Termina con..");
+                cbcriterio.Items.Add("Contiene..");
+
+            }
+
+        }
+
+        
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
     
 }

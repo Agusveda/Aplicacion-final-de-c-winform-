@@ -4,8 +4,10 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Dominio;
 namespace Repositorio
 {
@@ -25,6 +27,11 @@ namespace Repositorio
                 while (datos.Lector.Read())
                 {
                     Clase_Articulo aux = new Clase_Articulo();
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    if (aux.Precio > 0) // si el precio es menor a 0 no lo muestra (baja logica)
+                    {
+
                     aux.Id = (int)datos.Lector["id"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
@@ -45,14 +52,9 @@ namespace Repositorio
                     aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
 
 
-
-                     aux.Precio = (decimal)datos.Lector["Precio"];
-
-
-
-
                         ListaArticulos.Add(aux);
                     
+                    }
 
 
                 }
@@ -106,7 +108,6 @@ namespace Repositorio
 
         }
 
-
         public void Modificar(Clase_Articulo articulo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -140,5 +141,102 @@ namespace Repositorio
             }
 
         }
+
+        public void Eliminar(int id )
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Precio = -1 where Id = @id ");
+                datos.setearParametros("@id", id);
+                datos.ejecutarLectura();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion();}
+
+
+        }
+
+        public List<Clase_Articulo> FiltrarArticulos(string campo, string criterio, string filtro)
+          {
+            List<Clase_Articulo> lista = new List<Clase_Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string consulta = "select a.Id, Codigo, Nombre , a.Descripcion, m.Descripcion as Marca, c.Descripcion as Categoria, ImagenUrl, Precio from articulos a inner join CATEGORIAS c on a.IdCategoria = c.Id inner join MARCAS m on a.IdMarca = m.Id where Precio > 0 and ";
+                if (campo == "Precio.")
+                {
+                    switch (criterio)
+                    {
+                        case "Mayor a..":
+                            consulta += "Precio > @Precio";
+                            break;
+                        case "Menor a..":
+                            consulta += "Precio < @Precio";
+                            break;
+                        default:
+                            consulta += "Precio = @Precio";
+                            break;
+                    }
+                    datos.setearParametros("@Precio", Convert.ToDecimal(filtro));
+                }
+                else if (campo == "Nombre.")
+                {
+                    switch (criterio)
+                    {
+                        case "comienza con..":
+                            consulta += "Nombre like @Filtro + '%'";
+                            break;
+                        case "Termina con..":
+                            consulta += "Nombre like '%' + @Filtro";
+                            break;
+                        default:
+                            consulta += "Nombre like '%' + @Filtro + '%'";
+                            break;
+                    }
+                    datos.setearParametros("@Filtro", filtro);
+                }
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Clase_Articulo aux = new Clase_Articulo();
+
+                    aux.Id = (int)datos.Lector["id"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    // para poder cargar IdMarca
+                    aux.Marca = new IdMarca();
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+
+                    // para poder cargar IdCategoria
+                    aux.Categoria = new IdCategoria();
+                    aux.Categoria.Descripcion = (string)datos.Lector["categoria"];
+
+                    // me aseguro que no sea nulo
+                    if (!(datos.Lector["ImagenURL"] is DBNull))
+                        aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
