@@ -26,14 +26,11 @@ namespace Repositorio
             comando.CommandText = consulta;
 
         }
-
         public void setearParametros(string nombre, object valor)
         {
 
             comando.Parameters.AddWithValue(nombre, valor);
         }
-
-
         public void ejecutarLectura()
         {
             comando.Connection = conexion;
@@ -49,7 +46,6 @@ namespace Repositorio
                 throw ex;
             }
         }
-
         public void cerrarConexion()
         {
             if (lector != null)

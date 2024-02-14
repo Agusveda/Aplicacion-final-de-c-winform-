@@ -77,7 +77,6 @@ namespace Repositorio
 
 
         }
-
         public void Agregar(Clase_Articulo nuevoart)
         {
                 AccesoDatos datos = new AccesoDatos();
@@ -107,7 +106,6 @@ namespace Repositorio
 
 
         }
-
         public void Modificar(Clase_Articulo articulo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -141,7 +139,6 @@ namespace Repositorio
             }
 
         }
-
         public void Eliminar(int id )
         {
             AccesoDatos datos = new AccesoDatos();
@@ -162,7 +159,6 @@ namespace Repositorio
 
 
         }
-
         public List<Clase_Articulo> FiltrarArticulos(string campo, string criterio, string filtro)
           {
             List<Clase_Articulo> lista = new List<Clase_Articulo>();

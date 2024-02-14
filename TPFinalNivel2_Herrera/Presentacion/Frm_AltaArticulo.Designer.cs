@@ -42,16 +42,17 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.cbMarca = new System.Windows.Forms.ComboBox();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
-            this.pbImagenart = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btbAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnImagenLocal = new System.Windows.Forms.Button();
+            this.pbImagenart = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenart)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCodigo
             // 
+            this.txtCodigo.BackColor = System.Drawing.Color.FloralWhite;
             this.txtCodigo.Location = new System.Drawing.Point(124, 104);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(167, 20);
@@ -59,20 +60,23 @@
             // 
             // txtDescripcion
             // 
+            this.txtDescripcion.BackColor = System.Drawing.Color.FloralWhite;
             this.txtDescripcion.Location = new System.Drawing.Point(124, 185);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(167, 20);
-            this.txtDescripcion.TabIndex = 1;
+            this.txtDescripcion.TabIndex = 2;
             // 
             // txtNombre
             // 
+            this.txtNombre.BackColor = System.Drawing.Color.FloralWhite;
             this.txtNombre.Location = new System.Drawing.Point(124, 144);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(167, 20);
-            this.txtNombre.TabIndex = 2;
+            this.txtNombre.TabIndex = 1;
             // 
             // txtImagenUrl
             // 
+            this.txtImagenUrl.BackColor = System.Drawing.Color.FloralWhite;
             this.txtImagenUrl.Location = new System.Drawing.Point(124, 313);
             this.txtImagenUrl.Name = "txtImagenUrl";
             this.txtImagenUrl.Size = new System.Drawing.Size(167, 20);
@@ -150,64 +154,74 @@
             // 
             // txtPrecio
             // 
+            this.txtPrecio.BackColor = System.Drawing.Color.FloralWhite;
             this.txtPrecio.Location = new System.Drawing.Point(124, 354);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(167, 20);
-            this.txtPrecio.TabIndex = 12;
+            this.txtPrecio.TabIndex = 6;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // cbMarca
             // 
+            this.cbMarca.BackColor = System.Drawing.Color.FloralWhite;
             this.cbMarca.FormattingEnabled = true;
             this.cbMarca.Location = new System.Drawing.Point(123, 274);
             this.cbMarca.Name = "cbMarca";
             this.cbMarca.Size = new System.Drawing.Size(167, 21);
-            this.cbMarca.TabIndex = 14;
+            this.cbMarca.TabIndex = 4;
             // 
             // cbCategoria
             // 
+            this.cbCategoria.BackColor = System.Drawing.Color.FloralWhite;
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(124, 230);
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(167, 21);
-            this.cbCategoria.TabIndex = 15;
-            // 
-            // pbImagenart
-            // 
-            this.pbImagenart.Location = new System.Drawing.Point(369, 107);
-            this.pbImagenart.Name = "pbImagenart";
-            this.pbImagenart.Size = new System.Drawing.Size(412, 269);
-            this.pbImagenart.TabIndex = 16;
-            this.pbImagenart.TabStop = false;
+            this.cbCategoria.TabIndex = 3;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Verdana", 48F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(110, -1);
+            this.label8.Font = new System.Drawing.Font("Verdana", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Khaki;
+            this.label8.Location = new System.Drawing.Point(110, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(585, 78);
+            this.label8.Size = new System.Drawing.Size(521, 78);
             this.label8.TabIndex = 17;
             this.label8.Text = "Alta de articulo";
             // 
             // btbAceptar
             // 
-            this.btbAceptar.Location = new System.Drawing.Point(169, 431);
+            this.btbAceptar.BackColor = System.Drawing.Color.PaleGreen;
+            this.btbAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btbAceptar.FlatAppearance.BorderColor = System.Drawing.SystemColors.InfoText;
+            this.btbAceptar.FlatAppearance.BorderSize = 2;
+            this.btbAceptar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
+            this.btbAceptar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
+            this.btbAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btbAceptar.Location = new System.Drawing.Point(123, 431);
             this.btbAceptar.Name = "btbAceptar";
             this.btbAceptar.Size = new System.Drawing.Size(182, 51);
-            this.btbAceptar.TabIndex = 18;
+            this.btbAceptar.TabIndex = 7;
             this.btbAceptar.Text = "&Aceptar";
-            this.btbAceptar.UseVisualStyleBackColor = true;
+            this.btbAceptar.UseVisualStyleBackColor = false;
             this.btbAceptar.Click += new System.EventHandler(this.btbAceptar_Click);
             // 
             // btnCancelar
             // 
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnCancelar.FlatAppearance.BorderSize = 2;
+            this.btnCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.Location = new System.Drawing.Point(432, 431);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(182, 51);
-            this.btnCancelar.TabIndex = 19;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "&Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnImagenLocal
@@ -220,11 +234,23 @@
             this.btnImagenLocal.UseVisualStyleBackColor = true;
             this.btnImagenLocal.Click += new System.EventHandler(this.btnImagenLocal_Click);
             // 
+            // pbImagenart
+            // 
+            this.pbImagenart.BackgroundImage = global::Presentacion.Properties.Resources.imagen;
+            this.pbImagenart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbImagenart.Location = new System.Drawing.Point(369, 107);
+            this.pbImagenart.Name = "pbImagenart";
+            this.pbImagenart.Size = new System.Drawing.Size(299, 267);
+            this.pbImagenart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagenart.TabIndex = 16;
+            this.pbImagenart.TabStop = false;
+            // 
             // Frm_AltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 494);
+            this.BackColor = System.Drawing.SystemColors.Info;
+            this.ClientSize = new System.Drawing.Size(720, 516);
             this.Controls.Add(this.btnImagenLocal);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btbAceptar);
@@ -245,6 +271,7 @@
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.txtCodigo);
             this.Name = "Frm_AltaArticulo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta de articulo";
             this.Load += new System.EventHandler(this.Frm_AltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenart)).EndInit();

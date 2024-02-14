@@ -31,7 +31,6 @@ namespace Presentacion
 
 
         }
-
         private void CargarListado()
         {
             RepositorioArticulo repoArticulo = new RepositorioArticulo();
@@ -46,7 +45,7 @@ namespace Presentacion
 
 
             }
-            
+
             catch (Exception ex)
             {
 
@@ -55,8 +54,7 @@ namespace Presentacion
             ocultarColumnas();
 
         }
-
-        private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+        private void dgvArticulos_SelectionChanged(object sender, EventArgs e) // recorrer el dgv
         {
             if (dgvArticulos.CurrentRow != null)
             {
@@ -79,8 +77,7 @@ namespace Presentacion
             }
 
         }
-
-        private void txtFiltro_TextChanged(object sender, EventArgs e)
+        private void txtFiltro_TextChanged(object sender, EventArgs e) // funcion del filtro basico
         {
             List<Clase_Articulo> listaFiltada;
             string filtro = txtFiltro.Text;
@@ -101,27 +98,24 @@ namespace Presentacion
             dgvArticulos.DataSource = listaFiltada;
             ocultarColumnas();
         }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Frm_AltaArticulo alta = new Frm_AltaArticulo();
             alta.ShowDialog();
             CargarListado();
         }
-
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Clase_Articulo ArtSeleccionado;
             ArtSeleccionado = (Clase_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
 
-            Frm_AltaArticulo Modificar = new Frm_AltaArticulo(ArtSeleccionado); // le envio el articulo seleccionado para que tome sus 
+            Frm_AltaArticulo Modificar = new Frm_AltaArticulo(ArtSeleccionado,true); // le envio el articulo seleccionado para que tome sus 
 
             Modificar.ShowDialog(); // muestro form
             CargarListado(); // cargo el listado de nuevo una vez modificado.
 
 
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             RepositorioArticulo repoarti = new RepositorioArticulo();
@@ -144,7 +138,6 @@ namespace Presentacion
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void btnfiltro_Click(object sender, EventArgs e)
         {
             RepositorioArticulo repoarti = new RepositorioArticulo();
@@ -166,8 +159,6 @@ namespace Presentacion
                 MessageBox.Show(ex.ToString());
             }
         }
-
-
         private bool validacionFiltros()
         {
             if (cbcampo.SelectedIndex == -1)
@@ -206,7 +197,6 @@ namespace Presentacion
             }
             return true;
         }
-
         private void txtfiltro_TextChanged(object sender, EventArgs e)
         {
             List<Clase_Articulo> listaFiltada;
@@ -229,27 +219,27 @@ namespace Presentacion
             ocultarColumnas();
 
         }
-
         private void ocultarColumnas()
         {
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
             dgvArticulos.Columns["id"].Visible = false;
-        }
-
+        } // oculto columnas del dgv
         private void cbcampo_SelectedIndexChanged(object sender, EventArgs e)
         {
             string opcion = cbcampo.SelectedItem.ToString();
 
             if (opcion == "Precio.")
             {
+                cbcriterio.Items.Clear(); // aparecia un error que sumaba los items, con el clear limpio cada vez que se selecciona el campo
                 cbcriterio.Items.Add("Mayor a..");
                 cbcriterio.Items.Add("Menor a..");
                 cbcriterio.Items.Add("Igual a..");
 
 
             }
-            else
+            else if (opcion == "Nombre.")
             {
+                cbcriterio.Items.Clear();
                 cbcriterio.Items.Add("comienza con..");
                 cbcriterio.Items.Add("Termina con..");
                 cbcriterio.Items.Add("Contiene..");
@@ -257,23 +247,22 @@ namespace Presentacion
             }
 
         }
+        private void BtnLimpiarfiltro_Click(object sender, EventArgs e) // limpio filtro 
+        {
+            txtfiltroavanz.Text = string.Empty; // lo vacio 
+            CargarListado();
 
-        
-       
+        }
 
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            Clase_Articulo ArtSeleccionado;
+            ArtSeleccionado = (Clase_Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            Frm_AltaArticulo verDetalle  = new Frm_AltaArticulo(ArtSeleccionado,false);
 
+            verDetalle.ShowDialog();
 
-
-
-
-
-
-
-
-
-
-
-
+        }
     }
     
 }
